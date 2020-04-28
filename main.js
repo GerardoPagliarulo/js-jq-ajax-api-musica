@@ -16,23 +16,23 @@ $(document).ready(function() {
 	// Init Handlebars
 	var source = $('#cds-template').html();
 	var template = Handlebars.compile(source);
-	// Stampare  a schermo i cd
-		$.ajax({
-			url: myApi,
-			method: 'GET',
-			success: function (data) {
-				var cds = data.response;
-				//console.log('Array cd:', cds);
-				for(var i = 0; i < cds.length; i++) {
-					var item = cds[i];
-					//console.log(item);
-					var cd = template(item);
-					//console.log(cd);
-					cdsContainer.append(cd);	
-				}	
-			},
-			error: function () {
-				console.log('Errore chiamata API');
-			}
-		});
+	// Stampare a schermo i cd
+	$.ajax({
+		url: myApi,
+		method: 'GET',
+		success: function (data) {
+			var cds = data.response;
+			//console.log('Array cd:', cds);
+			for(var i = 0; i < cds.length; i++) {
+				var item = cds[i];
+				//console.log(item);
+				var cd = template(item);
+				//console.log(cd);
+				cdsContainer.append(cd);	
+			}	
+		},
+		error: function () {
+			console.log('Errore chiamata API');
+		}
+	});
 });
