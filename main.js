@@ -35,4 +35,38 @@ $(document).ready(function() {
 			console.log('Errore chiamata API');
 		}
 	});
+	// Scelta genere musicale
+	var choice = $('#music-genre');
+	$('body').on('change', choice, function () {
+		$('.cd').hide();
+		var genre = choice.val();
+		//console.log(genre);
+		$.ajax({
+			url: myApi,
+			method: 'GET',
+			success: function (data) {
+				var cds = data.response;
+				//console.log('Array cd:', cds);
+				for(var i = 0; i < cds.length; i++) {
+					var item = cds[i];
+					//console.log(item);					
+					var genreChosen = item.genre;
+					//console.log(genreChosen);
+					if (genre === '') {
+						var cd = template(item);
+						//console.log(cd);
+						cdsContainer.append(cd);
+					}		
+					else if (genreChosen.toLowerCase() === genre) {
+						var cd = template(item);
+						//console.log(cd);
+						cdsContainer.append(cd);
+					}
+				}
+			},
+			error: function () {
+				console.log('Errore chiamata API');
+			}
+		});
+	});
 });
