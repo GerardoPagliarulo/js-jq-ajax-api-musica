@@ -38,7 +38,7 @@ $(document).ready(function() {
 	// Scelta genere musicale
 	var choice = $('#music-genre');
 	$('body').on('change', choice, function () {
-		$('.cd').hide();
+		$('.cd').remove();
 		var genre = choice.val();
 		//console.log(genre);
 		$.ajax({
@@ -56,7 +56,7 @@ $(document).ready(function() {
 						var cd = template(item);
 						//console.log(cd);
 						cdsContainer.append(cd);
-					}		
+					}
 					else if (genreChosen.toLowerCase() === genre) {
 						var cd = template(item);
 						//console.log(cd);
